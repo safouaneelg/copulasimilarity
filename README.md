@@ -10,7 +10,7 @@ A novel locally sensitive image similarity metric based on Gaussian Copula.
   - [Usage](#usage)
   - [Python library usage](#python-library-usage)
   - [Command-Line Usage](#command-line-usage)
-- [Paper results reproducibility](#paper-results-reproducibility)
+- [Paper Results Reproducibility](#-paper-results-reproducibility)
 - [📚 Example Use Case](#-example-use-case)
   - [MRI imagery: Human brain](#mri-imagery-human-brain)
   - [Astronomy: Andromeda Galaxy](#astronomy-andromeda-galaxy)
@@ -191,7 +191,7 @@ Arguments
 - `--resolution_factor`: (OPTIONAL, DEFAULT=8) Resolution factor te reduce video size for fast processing
 - `--patch_size` (OPTIONAL, DEFAULT=8): Specifies the size of the patches used in the Copula-Based Similarity (CSM) computation. This parameter determines the dimensions of the image patches extracted for similarity analysis. A smaller patch size can lead to higher accuracy in capturing fine-grained details but may increase processing time due to the larger number of patches
 
-## 📚 Paper Results Reproducibility
+## 📰 Paper Results Reproducibility
 
 The results provided in our paper can be reproduced following the notebooks [Comparative_study_eval.ipynb](/Comparative_study_eval.ipynb) and [CSIQ_eval.ipynb](/CSIQ_eval.ipynb). You can also plot the figure from save *pickle* files in [pkldata](/pkldata/).
 
