@@ -215,7 +215,7 @@ The example below shows a comparative study on an Andromeda Galaxy video with a 
 
 ## Licence
 
-The work can be used for research purposes.
+This code is made available for research purposes only and is not licensed for commercial use.
 
 ## Citation
 <!--Please cite use if you use our implementation as following:-->
