@@ -63,6 +63,20 @@ image2 = cv2.imread('path_to_image2')
 ssim_value = fsim_similarity.fsim(image1, image2)
 issm_value = issm_similarity.issm(image1, image2)
 ```
+### Command-Line Usage
+You can use the provided command-line tool compare_images.py to compute image similarity metrics directly from the terminal.
+
+```python compare_images.py --path1 PATH_TO_IMAGE1 --path2 PATH_TO_IMAGE2 [--issm] [--fsim] [--ssim] [--rmse] [--psnr] [--save_csm_map]```
+
+Arguments
+- --path1: (REQUIRED) Path to the first image
+- --path2: (REQUIRED) Path to the second image
+- --issm: (OPTIONAL) Compute ISSM similarity
+- --fsim: (OPTIONAL) Compute FSIM similarity
+- --ssim: (OPTIONAL) Compute SSIM similarity
+- --rmse: (OPTIONAL) Compute RMSE
+- --psnr: (OPTIONAL) Compute PSNR
+- --save_csm_map: (OPTIONAL) Save the Copula-Based Similarity Map as an image file
 
 ## 📚 Example Use Case
 
