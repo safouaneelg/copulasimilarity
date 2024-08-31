@@ -18,10 +18,10 @@ def main():
     parser.add_argument('--rmse', action='store_true', help='Compute RMSE')
     parser.add_argument('--psnr', action='store_true', help='Compute PSNR')
     parser.add_argument('--save_csm_map', action='store_true', help='Save the Copula-Based Similarity Map')
+    parser.add_argument('--patch_size', type=int, default=8, help='Patch size for Copula-Based Similarity (default: 8)') 
     
     args = parser.parse_args()
     
-    # Load images
     image1 = cv2.imread(args.path1)
     image2 = cv2.imread(args.path2)
 
@@ -32,9 +32,8 @@ def main():
     # Initialize similarity objects
     fsim_similarity = FSIMsimilarity()
     issm_similarity = ISSMsimilarity()
-    copula_similarity = CSMSimilarity()
+    copula_similarity = CSMSimilarity(patch_size=args.patch_size)  
 
-    # Compute similarity metrics based on user input
     if args.ssim:
         ssim_value = ssim(image1, image2)
         print(f"SSIM: {ssim_value:.4f}")
@@ -59,7 +58,6 @@ def main():
     csm = np.mean(csm_map)
     print(f"CSM: {csm:.4f}")
     
-    # Save the CSM map if requested
     if args.save_csm_map:
         plt.figure(figsize=(8, 6))
         plt.title('Copula-Based Similarity Map')
