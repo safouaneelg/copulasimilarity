@@ -1,6 +1,20 @@
 # Copula-based Similarity Metric (CSM)
 A novel locally sensitive image similarity metric based on Gaussian Copula.
 
+## Summary
+
+- [📖 Overview](#-overview)
+- [🌟 Features](#-features)
+- [🚀 Getting Started](#-getting-started)
+  - [Installation](#installation)
+  - [Usage](#usage)
+  - [Python library usage](#python-library-usage)
+  - [Command-Line Usage](#command-line-usage)
+- [📚 Example Use Case](#-example-use-case)
+  - [MRI imagery: Human brain](#mri-imagery-human-brain)
+  - [Astronomy: Andromeda Galaxy](#astronomy-andromeda-galaxy)
+- [Licence](#licence)
+- [Citation](#citation)
 
 ## 📖 Overview
 
@@ -67,7 +81,7 @@ graph TD
 - **Locally Sensitive**: Captures detailed differences at a granular level.
 - **Gaussian Copula-Based**: Utilizes statistical properties for robust similarity measurement.
 - **Versatile Usage**: Suitable for various image types and applications.
-- **Extensible**: Easily integrates with other image quality metrics like SSIM, FSIM, and ISSM.
+- **Extensible**: Easily installation package and fast use.
 
 
 ## 🚀 Getting Started
@@ -80,14 +94,17 @@ To install the CopulaSimilarity package, you can use pip:
 pip install CopulaSimilarity
 ```
 
-### Usage
+### Python library usage
 
 you can import the package and estimate the similarity map as follow:
 
 ```py
 from CopulaSimilarity.CSM import CopulaBasedSimilarity as CSMSimilarity
+import matplotlib.pyplot as plt
+import numpy as np
 
-copula_similarity = CSMSimilarity()
+# Default patch_size set to 8 but can be changed depending on the aimed balance between accuracy and realtime
+copula_similarity = CSMSimilarity(patch_size=8) 
 
 #load your images
 image1 = cv2.imread('path_to_image1')
@@ -99,7 +116,7 @@ csm_map = copula_similarity.compute_local_similarity(image, blurred_image)
 # Optionally: you can show the similarity map using cv2 or matplotlib
 #cv2.imshow('Similarity Map', csm_map)
 # or
-#plt.imshow(csm_map, cmap='virdis')
+plt.imshow(csm_map, cmap='virdis')
 
 #if you need a single value you can calculate the mean of the copula similarity map
 csm_mean = np.mean(csm_map)
@@ -159,12 +176,25 @@ Arguments
 
 ## 📚 Example Use Case
 
-The example below shows a comparative study on MRI imagery, where the first frame is fixed, and similarity metrics (SSIM, FSIM, ISSM, and CSM) are calculated between that frame and subsequent ones. This highlights the differences captured by each metric, demonstrating the unique sensitivity and accuracy of CSM in various scenarios.
+Two use cases have been studied in the paper: Healthcare and astronomy. In both, we have recovered part of Youtube videos (link below), to which we have applied the CSM and compared it to other metrics SSIM ISSM and FSIM. The first frame is fixed and taken as reference, and the four similarity metrics are calculated between reference frame and subsequent ones.
 
-![csm_vs_other_metrics](images/analysis4.gif)
+### MRI imagery: Human brain 
+
+[MRI captures movement of the brain - 0:10 to 0:16](https://www.youtube.com/watch?v=Po-1tm8wS6c)
+The example below shows a comparative study on an MRI video with a moving Gland. Curves plot highlights the differences captured by each metric, demonstrating the high sensitivity and accuracy of CSM in returning low value but also locating the changes in the Copula Similarity Map.
+
+![csm_vs_other_metrics_mri](images/brain_mri.gif)
+
+### Astronomy: Andromeda Galaxy 
+
+[Andromeda Galaxy - 2:16 to 2:26](https://www.youtube.com/watch?v=f4UbhX2lF4Y)
+The example below shows a comparative study on an Andromeda Galaxy video with a moving circle by the center of the video. The intensity is very slightly changing between the frames as it is barely visible even in raw difference between current frame and reference frame (Video - b). However, the CSM still captures the differences precisely as show in Copula Similarity Map.
+
+![csm_vs_other_metrics_astronomy](images/andromeda_galaxy.gif)
 
 ## Licence
 
 The work can be used for research purposes.
 
+## Citation
 <!--Please cite use if you use our implementation as following:-->
