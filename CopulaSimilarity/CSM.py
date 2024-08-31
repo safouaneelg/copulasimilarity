@@ -1,6 +1,5 @@
 import numpy as np
 import math
-from scipy.ndimage import generic_filter
 
 def erfinv(x):
     """Approximate the inverse error function using a polynomial approximation."""
