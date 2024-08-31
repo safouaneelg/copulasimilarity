@@ -181,7 +181,7 @@ if __name__ == "__main__":
     parser.add_argument('--save_final_frame', action='store_true', help='Save final frame')
     parser.add_argument('--show_live_window', action='store_true', help='Show live window')
     parser.add_argument('--resolution_factor', type=int, default=8, help='Resolution factor')
-    parser.add_argument('--patch_size', type=int, default=8, help='Patch size for CopulaBasedSimilarity')  # New argument added
+    parser.add_argument('--patch_size', type=int, default=8, help='Patch size for CopulaBasedSimilarity') 
     args = parser.parse_args()
 
     process_video(args.path_to_video, args.resolution_factor, args.output_video_path, args.ssim, args.fsim, args.issm, args.save_final_frame, args.show_live_window, args.patch_size)
