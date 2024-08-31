@@ -6,6 +6,39 @@ A novel locally sensitive image similarity metric based on Gaussian Copula.
 
 Copula-based Similarity Metric (CSM) is a unique approach for measuring image similarity that leverages the properties of Gaussian copulas to provide a locally sensitive measure of similarity between images. Unlike traditional metrics, CSM is designed to capture both global and local image features, making it particularly effective for applications in medical imaging, remote sensing, and any domain requiring fine-grained image comparison.
 
+```mermaid
+graph TD
+    A[Input Image1] --> B[Patching]
+    A2[Input Image2] --> B2[Patching]
+    
+    B --> C[Features Sorting]
+    B2 --> C2[Features Sorting]
+    
+    C --> D[Compute Copula per Image]
+    C2 --> D2[Compute Copula per Image]
+    
+    D --> E[Copula Vectors]
+    D2 --> E2[Copula Vectors]
+    
+    E --> F[Compute Euclidean Distance]
+    E2 --> F
+    
+    F --> G[Similarity Score]
+    
+    style A fill:#D4E157,stroke:#000
+    style A2 fill:#D4E157,stroke:#000
+    style B fill:#81C784,stroke:#000,stroke-width:2px
+    style B2 fill:#81C784,stroke:#000,stroke-width:2px
+    style C fill:#64B5F6,stroke:#000,stroke-width:2px
+    style C2 fill:#64B5F6,stroke:#000,stroke-width:2px
+    style D fill:#FF8A65,stroke:#000,stroke-width:2px
+    style D2 fill:#FF8A65,stroke:#000,stroke-width:2px
+    style E fill:#9575CD,stroke:#000,stroke-width:2px
+    style E2 fill:#9575CD,stroke:#000,stroke-width:2px
+    style F fill:#FFCA28,stroke:#000,stroke-width:2px
+    style G fill:#42A5F5,stroke:#000,stroke-width:2px
+```
+
 ## 🌟 Features
 
 - **Locally Sensitive**: Captures detailed differences at a granular level.
