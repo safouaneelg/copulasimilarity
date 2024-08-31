@@ -10,35 +10,56 @@ A visual graph of the implementation is given in the following diagram:
 
 ```mermaid
 graph TD
-    A[Input Image1] --> B[Patching]
-    A2[Input Image2] --> B2[Patching]
+    A[Input Image1] -->|Initialize| B[Extract Local Features]
+    A2[Input Image2] -->|Initialize| B2[Extract Local Features]
     
-    B --> C[Features Sorting]
-    B2 --> C2[Features Sorting]
+    B --> C[Extracted Patches Image1]
+    B2 --> C2[Extracted Patches Image2]
     
-    C --> D[Compute Copula per Image]
-    C2 --> D2[Compute Copula per Image]
+    C --> D[For Each Patch Pair]
+    C2 --> D
+
+    D --> E[Reshape Features]
+    D --> E2[Reshape Features]
+
+    E --> F[Compute Copula]
+    E2 --> F2[Compute Copula]
     
-    D --> E[Copula Vectors]
-    D2 --> E2[Copula Vectors]
+    F --> G[Copula Vector Image1]
+    F2 --> G2[Copula Vector Image2]
     
-    E --> F[Compute Euclidean Distance]
-    E2 --> F
+    G --> H[Compute Euclidean Distance]
+    G2 --> H
+
+    H --> I[Compute Similarity]
     
-    F --> G[Similarity Score]
+    I --> J[Append Similarity to Local Similarities List]
+
+    J --> K{More Patches?}
+    K -->|Yes| D
+    K -->|No| L[Reshape Local Similarities]
     
-    style A fill:#D4E157,stroke:#000
-    style A2 fill:#D4E157,stroke:#000
+    L --> M[Output Similarity Map]
+
+    style A fill:#D4E157,stroke:#000,stroke-width:2px
+    style A2 fill:#D4E157,stroke:#000,stroke-width:2px
     style B fill:#81C784,stroke:#000,stroke-width:2px
     style B2 fill:#81C784,stroke:#000,stroke-width:2px
-    style C fill:#64B5F6,stroke:#000,stroke-width:2px
-    style C2 fill:#64B5F6,stroke:#000,stroke-width:2px
-    style D fill:#FF8A65,stroke:#000,stroke-width:2px
-    style D2 fill:#FF8A65,stroke:#000,stroke-width:2px
-    style E fill:#9575CD,stroke:#000,stroke-width:2px
-    style E2 fill:#9575CD,stroke:#000,stroke-width:2px
-    style F fill:#FFCA28,stroke:#000,stroke-width:2px
-    style G fill:#42A5F5,stroke:#000,stroke-width:2px
+    style C fill:#AED581,stroke:#000,stroke-width:2px
+    style C2 fill:#AED581,stroke:#000,stroke-width:2px
+    style D fill:#64B5F6,stroke:#000,stroke-width:2px
+    style E fill:#FF8A65,stroke:#000,stroke-width:2px
+    style E2 fill:#FF8A65,stroke:#000,stroke-width:2px
+    style F fill:#BA68C8,stroke:#000,stroke-width:2px
+    style F2 fill:#BA68C8,stroke:#000,stroke-width:2px
+    style G fill:#9575CD,stroke:#000,stroke-width:2px
+    style G2 fill:#9575CD,stroke:#000,stroke-width:2px
+    style H fill:#FFCA28,stroke:#000,stroke-width:2px
+    style I fill:#42A5F5,stroke:#000,stroke-width:2px
+    style J fill:#FF7043,stroke:#000,stroke-width:2px
+    style K fill:#78909C,stroke:#000,stroke-width:2px
+    style L fill:#4DB6AC,stroke:#000,stroke-width:2px
+    style M fill:#0288D1,stroke:#000,stroke-width:2px
 ```
 
 ## 🌟 Features
