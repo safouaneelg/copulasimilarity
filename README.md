@@ -148,14 +148,15 @@ You can use the provided command-line tool `compare_images.py` to compute image 
 ```python compare_images.py --path1 PATH_TO_IMAGE1 --path2 PATH_TO_IMAGE2 [--issm] [--fsim] [--ssim] [--rmse] [--psnr] [--save_csm_map]```
 
 Arguments
-- --path1: (REQUIRED) Path to the first image
-- --path2: (REQUIRED) Path to the second image
-- --issm: (OPTIONAL) Compute ISSM similarity
-- --fsim: (OPTIONAL) Compute FSIM similarity
-- --ssim: (OPTIONAL) Compute SSIM similarity
-- --rmse: (OPTIONAL) Compute RMSE
-- --psnr: (OPTIONAL) Compute PSNR
-- --save_csm_map: (OPTIONAL) Save the Copula-Based Similarity Map as an image file
+- `--path1`: (REQUIRED) Path to the first image
+- `--path2`: (REQUIRED) Path to the second image
+- `--issm`: (OPTIONAL) Compute ISSM similarity
+- `--fsim`: (OPTIONAL) Compute FSIM similarity
+- `--ssim`: (OPTIONAL) Compute SSIM similarity
+- `--rmse`: (OPTIONAL) Compute RMSE
+- `--psnr`: (OPTIONAL) Compute PSNR
+- `--save_csm_map`: (OPTIONAL) Save the Copula-Based Similarity Map as an image file
+- `--patch_size` (OPTIONAL, DEFAULT=8): Specifies the size of the patches used in the Copula-Based Similarity (CSM) computation. This parameter determines the dimensions of the image patches extracted for similarity analysis. A smaller patch size can lead to higher accuracy in capturing fine-grained details but may increase processing time due to the larger number of patches (default set to 8)
 
 **Dynamic Comparison**
 
@@ -164,15 +165,15 @@ We also provide a code `video_analysis.py` for frame-by-frame analysis, where th
 ```python video_analysis.py --path_to_video PATH_TO_VIDEO --output_video_path OUTPUT_VIDEO_PATH.mp4 [--issm] [--fsim] [--ssim] [--save_final_frame] [--show_live_window] [--resolution_factor=RESOLUTION ]FACTOR]```
 
 Arguments
-- --path_to_video:     (REQUIRED) Path to the video
-- --output_video_path: (REQUIRED) Output path to save the resulting video analysis
-- --issm: (OPTIONAL) Compute ISSM similarity
-- --fsim: (OPTIONAL) Compute FSIM similarity
-- --ssim: (OPTIONAL) Compute SSIM similarity
-- --save_final_frame: (OPTIONAL) Save the final result figure
-- --show_live_window: (OPTIONAL) Show live processing (might be slow due to video resolution or texture and due to FSIM slow computation)
-- --resolution_factor: (OPTIONAL) Resolution factor te reduce video size for fast processing (default is 8)
-
+- `--path_to_video`: (REQUIRED) Path to the video
+- `--output_video_path`: (REQUIRED) Output path to save the resulting video analysis
+- `--issm`: (OPTIONAL) Compute ISSM similarity
+- `--fsim`: (OPTIONAL) Compute FSIM similarity
+- `--ssim`: (OPTIONAL) Compute SSIM similarity
+- `--save_final_frame`: (OPTIONAL) Save the final result figure
+- `--show_live_window`: (OPTIONAL) Show live processing (might be slow due to video resolution or texture and due to FSIM slow computation)
+- `--resolution_factor`: (OPTIONAL, DEFAULT=8) Resolution factor te reduce video size for fast processing
+- `--patch_size` (OPTIONAL, DEFAULT=8): Specifies the size of the patches used in the Copula-Based Similarity (CSM) computation. This parameter determines the dimensions of the image patches extracted for similarity analysis. A smaller patch size can lead to higher accuracy in capturing fine-grained details but may increase processing time due to the larger number of patches
 
 ## 📚 Example Use Case
 
