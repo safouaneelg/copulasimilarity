@@ -6,7 +6,7 @@ A novel locally sensitive image similarity metric based on Gaussian Copula.
 
 Copula-based Similarity Metric (CSM) is a unique approach for measuring image similarity that leverages the properties of Gaussian copulas to provide a locally sensitive measure of similarity between images. Unlike traditional metrics, CSM is designed to capture both global and local image features, making it particularly effective for applications in medical imaging, remote sensing, and any domain requiring fine-grained image comparison.
 
-A visual graph of the implementation is given in the following diagram:
+A visual graph of the CSM implementation is given in the following diagram:
 
 ```mermaid
 graph TD
