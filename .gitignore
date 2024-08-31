@@ -32,3 +32,5 @@ pkldata/results_data_mean_7.0.pkl
 pkldata/results_data_mean_8.0.pkl
 pkldata/results_data_mean_9.0.pkl
 pkldata/results_data_mean_10.0.pkl
+
+__pycache__/
