@@ -120,7 +120,10 @@ ssim_value = fsim_similarity.fsim(image1, image2)
 issm_value = issm_similarity.issm(image1, image2)
 ```
 ### Command-Line Usage
-You can use the provided command-line tool compare_images.py to compute image similarity metrics directly from the terminal.
+
+**Static Comparison**
+
+You can use the provided command-line tool `compare_images.py` to compute image similarity metrics directly from the terminal between two images as following.
 
 ```python compare_images.py --path1 PATH_TO_IMAGE1 --path2 PATH_TO_IMAGE2 [--issm] [--fsim] [--ssim] [--rmse] [--psnr] [--save_csm_map]```
 
@@ -133,6 +136,23 @@ Arguments
 - --rmse: (OPTIONAL) Compute RMSE
 - --psnr: (OPTIONAL) Compute PSNR
 - --save_csm_map: (OPTIONAL) Save the Copula-Based Similarity Map as an image file
+
+**Dynamic Comparison**
+
+We also provide a code `video_analysis.py` for frame-by-frame analysis, where the similarity is computed between the first frame considered as reference and subsequent ones as mentionned in the paper. To run the code, you can execute the following command line.
+
+```python video_analysis.py --path_to_video PATH_TO_VIDEO --output_video_path OUTPUT_VIDEO_PATH.mp4 [--issm] [--fsim] [--ssim] [--save_final_frame] [--show_live_window] [--resolution_factor=RESOLUTION ]FACTOR]```
+
+Arguments
+- --path_to_video:     (REQUIRED) Path to the video
+- --output_video_path: (REQUIRED) Output path to save the resulting video analysis
+- --issm: (OPTIONAL) Compute ISSM similarity
+- --fsim: (OPTIONAL) Compute FSIM similarity
+- --ssim: (OPTIONAL) Compute SSIM similarity
+- --save_final_frame: (OPTIONAL) Save the final result figure
+- --show_live_window: (OPTIONAL) Show live processing (might be slow due to video resolution or texture and due to FSIM slow computation)
+- --resolution_factor: (OPTIONAL) Resolution factor te reduce video size for fast processing (default is 8)
+
 
 ## 📚 Example Use Case
 
