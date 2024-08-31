@@ -6,10 +6,11 @@ A novel locally sensitive image similarity metric based on Gaussian Copula.
 - [📖 Overview](#-overview)
 - [🌟 Features](#-features)
 - [🚀 Getting Started](#-getting-started)
-  - [Installation](#installation)
+  - [Package Installation](#package-installation)
   - [Usage](#usage)
   - [Python library usage](#python-library-usage)
   - [Command-Line Usage](#command-line-usage)
+- [Paper results reproducibility](#paper-results-reproducibility)
 - [📚 Example Use Case](#-example-use-case)
   - [MRI imagery: Human brain](#mri-imagery-human-brain)
   - [Astronomy: Andromeda Galaxy](#astronomy-andromeda-galaxy)
@@ -86,7 +87,7 @@ graph TD
 
 ## 🚀 Getting Started
 
-### Installation
+### Package Installation
 
 To install the CopulaSimilarity package, you can use pip:
 
@@ -94,6 +95,15 @@ To install the CopulaSimilarity package, you can use pip:
 pip install CopulaSimilarity
 ```
 
+or
+
+```bash
+git clone https://github.com/safouaneelg/copulasimilarity.git
+
+pip install -r requirements.txt
+pip install -e .
+
+```
 ### Python library usage
 
 you can import the package and estimate the similarity map as follow:
@@ -141,6 +151,12 @@ issm_value = issm_similarity.issm(image1, image2)
 ```
 ### Command-Line Usage
 
+Two codes are provided within this repository, one for static comparison and the other for dynamic analysis.
+
+To run those, the github repository should be clones and requirements installed. Follow [Installation](#installation).
+
+Afterward, below command line can be executed.
+
 **Static Comparison**
 
 You can use the provided command-line tool `compare_images.py` to compute image similarity metrics directly from the terminal between two images as following.
@@ -174,6 +190,10 @@ Arguments
 - `--show_live_window`: (OPTIONAL) Show live processing (might be slow due to video resolution or texture and due to FSIM slow computation)
 - `--resolution_factor`: (OPTIONAL, DEFAULT=8) Resolution factor te reduce video size for fast processing
 - `--patch_size` (OPTIONAL, DEFAULT=8): Specifies the size of the patches used in the Copula-Based Similarity (CSM) computation. This parameter determines the dimensions of the image patches extracted for similarity analysis. A smaller patch size can lead to higher accuracy in capturing fine-grained details but may increase processing time due to the larger number of patches
+
+## 📚 Paper Results Reproducibility
+
+The results provided in our paper can be reproduced following the notebooks [Comparative_study_eval.ipynb](/Comparative_study_eval.ipynb) and [CSIQ_eval.ipynb](/CSIQ_eval.ipynb). You can also plot the figure from save *pickle* files in [pkldata](/pkldata/).
 
 ## 📚 Example Use Case
 
