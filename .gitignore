@@ -1,5 +1,6 @@
 ### AL ###
 #Template for AL projects for Dynamics 365 Business Central
+*.pdf
 #launch.json folder
 .vscode/
 #Cache folder
@@ -23,6 +24,7 @@ TestResults.xml
 
 dataset/
 
+pkldata/results_data_mean_0.0.pkl
 pkldata/results_data_mean_1.0.pkl
 pkldata/results_data_mean_2.0.pkl
 pkldata/results_data_mean_3.0.pkl
@@ -34,3 +36,12 @@ pkldata/results_data_mean_9.0.pkl
 pkldata/results_data_mean_10.0.pkl
 
 __pycache__/
+
+/home/safouane/Documents/workspace/copulasimilarity/CopulaSimilarity.egg-info
+
+dist/
+build/
+CopulaSimilarity.egg-info
+
+figuresandresults/
+ipynb/
