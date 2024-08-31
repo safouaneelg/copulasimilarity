@@ -1,12 +1,4 @@
 # Copula-based Similarity Metric (CSM)
-A novel locally sensitive image similarity metric based on Gaussian Copula
-
-[SHORT EXPLANATION OF COPULA BASED SIMILARITY]
-
-Example:
-Comparative study on MRI imagery while fixing the first frame and calculating similarity metrics SSIM FSIM ISSM and CSM between that frame and subsequent ones  
-
-# Copula-based Similarity Metric (CSM)
 A novel locally sensitive image similarity metric based on Gaussian Copula.
 
 
