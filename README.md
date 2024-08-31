@@ -84,7 +84,7 @@ pip install CopulaSimilarity
 
 you can import the package and estimate the similarity map as follow:
 
-```
+```py
 from CopulaSimilarity.CSM import CopulaBasedSimilarity as CSMSimilarity
 
 copula_similarity = CSMSimilarity()
@@ -94,18 +94,21 @@ image1 = cv2.imread('path_to_image1')
 image2 = cv2.imread('path_to_image2')
 
 #calculate the similarity map
-csm_value = copula_similarity.compute_local_similarity(image, blurred_image)
+csm_map = copula_similarity.compute_local_similarity(image, blurred_image)
 
 # Optionally: you can show the similarity map using cv2 or matplotlib
+#cv2.imshow('Similarity Map', csm_map)
+# or
+#plt.imshow(csm_map, cmap='virdis')
 
-#if you need a metric you can calculat the mean of the copula similarity map
-csm_mean = np.mean(csm_value)
+#if you need a single value you can calculate the mean of the copula similarity map
+csm_mean = np.mean(csm_map)
 ```
 
 Other metrics can also be used, the implementation is based on (image-similarity-measures)[https://github.com/nekhtiari/image-similarity-measures/tree/master] package. you can either install it using `pip install image-similarity-measures` command, or you can also use our implementation.
 To use other metrics such as SSIM FSIM and ISSM, it's very similar however they only return a value. Tutorial:
 
-```
+```py
 from similarity_metrics.fsim_quality import FSIMsimilarity
 from similarity_metrics.issm_quality import ISSMsimilarity
 
