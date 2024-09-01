@@ -172,7 +172,9 @@ Arguments
 - `--rmse`: (OPTIONAL) Compute RMSE
 - `--psnr`: (OPTIONAL) Compute PSNR
 - `--save_csm_map`: (OPTIONAL) Save the Copula-Based Similarity Map as an image file
-- `--patch_size` (OPTIONAL, DEFAULT=8): Specifies the size of the patches used in the Copula-Based Similarity (CSM) computation. This parameter determines the dimensions of the image patches extracted for similarity analysis. A smaller patch size can lead to higher accuracy in capturing fine-grained details but may increase processing time due to the larger number of patches (default set to 8)
+- `--patch_size` (OPTIONAL, DEFAULT=8): Specifies the size of the patches used in the Copula-Based Similarity (CSM) computation. This parameter determines the dimensions of the image patches extracted for similarity analysis.
+
+⚠️ warning ⚠️: A very small patch size can lead over-estimation of the similarity and may exponentially increase processing time due to the larger number of patches to be processed
 
 **Dynamic Comparison**
 
@@ -189,7 +191,9 @@ Arguments
 - `--save_final_frame`: (OPTIONAL) Save the final result figure
 - `--show_live_window`: (OPTIONAL) Show live processing (might be slow due to video resolution or texture and due to FSIM slow computation)
 - `--resolution_factor`: (OPTIONAL, DEFAULT=8) Resolution factor te reduce video size for fast processing
-- `--patch_size` (OPTIONAL, DEFAULT=8): Specifies the size of the patches used in the Copula-Based Similarity (CSM) computation. This parameter determines the dimensions of the image patches extracted for similarity analysis. A smaller patch size can lead to higher accuracy in capturing fine-grained details but may increase processing time due to the larger number of patches
+- `--patch_size` (OPTIONAL, DEFAULT=8): Specifies the size of the patches used in the Copula-Based Similarity (CSM) computation. This parameter determines the dimensions of the image patches extracted for similarity analysis.
+
+⚠️ warning ⚠️: A very small patch size can lead over-estimation of the similarity and may exponentially increase processing time due to the larger number of patches to be processed
 
 ## 📰 Paper Results Reproducibility
 
