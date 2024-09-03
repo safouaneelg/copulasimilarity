@@ -4,6 +4,7 @@ import matplotlib.pyplot as plt
 from matplotlib.animation import FFMpegWriter
 import argparse
 import sys
+import pickle  # Import the pickle module
 
 from similarity_metrics.fsim_quality import FSIMsimilarity
 from similarity_metrics.issm_quality import ISSMsimilarity
@@ -64,6 +65,7 @@ def process_video(video_path, resolution_factor, output_video, ssim, fsim, issm,
     fsim_results = []
     issm_results = []
     csm_results = []
+    csm_maps = []  # To store CSM maps for each frame
     frame_indices = []
 
     fig = plt.figure(figsize=(20, 12)) 
@@ -89,7 +91,7 @@ def process_video(video_path, resolution_factor, output_video, ssim, fsim, issm,
     
     plot_ax.plot([], [], 'g-', label='SSIM')
     plot_ax.plot([], [], 'b-', label='FSIM')
-    plot_ax.plot([], [],'m-', label='ISSM')
+    plot_ax.plot([], [], 'm-', label='ISSM')
     plot_ax.plot([], [], 'r-', label='CSM')
     plot_ax.set_xlim(0, 100)
     plot_ax.set_ylim(0, 1)
@@ -128,6 +130,7 @@ def process_video(video_path, resolution_factor, output_video, ssim, fsim, issm,
             if issm:
                 issm_results.append(issm_value)
             csm_results.append(csm_mean)
+            csm_maps.append(csm_map)  # Save the CSM map for later use
 
             video_ax.imshow(current_rgb)
             video_ax.axis('off')
@@ -146,7 +149,7 @@ def process_video(video_path, resolution_factor, output_video, ssim, fsim, issm,
             if fsim:
                 plot_ax.plot(frame_indices, fsim_results, 'b-', label='FSIM')
             if issm:
-                plot_ax.plot(frame_indices, issm_results,'m-', label='ISSM')
+                plot_ax.plot(frame_indices, issm_results, 'm-', label='ISSM')
             plot_ax.plot(frame_indices, csm_results, 'r-', label='CSM')
             plot_ax.set_xlim(0, len(frame_indices))
             plot_ax.set_ylim(0, 1)
@@ -171,6 +174,21 @@ def process_video(video_path, resolution_factor, output_video, ssim, fsim, issm,
     cap.release()
     plt.close(fig)
 
+    ''' #pickle data saving data (optional)
+    data = {
+        'frame_indices': frame_indices,
+        'ssim_results': ssim_results,
+        'fsim_results': fsim_results,
+        'issm_results': issm_results,
+        'csm_results': csm_results,
+        'csm_maps': csm_maps 
+    }
+
+    with open('similarity_metrics_data.pkl', 'wb') as f:
+        pickle.dump(data, f)
+
+    print("Data has been saved to similarity_metrics_data.pkl")
+    '''
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Video analysis')
     parser.add_argument('--path_to_video', help='Path to video file')
