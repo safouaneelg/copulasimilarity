@@ -4,18 +4,18 @@ import matplotlib.pyplot as plt
 from matplotlib.animation import FFMpegWriter
 import argparse
 import sys
-import pickle  # Import the pickle module
+#import pickle
 
 from similarity_metrics.fsim_quality import FSIMsimilarity
 from similarity_metrics.issm_quality import ISSMsimilarity
-from CopulaSimilarity.CSM import CopulaBasedSimilarity as CSMSimilarity
+from CopulaSimilarity.CSM import CopulaBasedSimilarity as CSIMSimilarity
 from similarity_metrics.ssim_rmse_psnr_metrics import ssim
 
 class SimilarityMetrics:
     def __init__(self, patch_size=8):
         self.fsim_similarity = FSIMsimilarity()
         self.issm_similarity = ISSMsimilarity()
-        self.copula_similarity = CSMSimilarity(patch_size=patch_size)
+        self.copula_similarity = CSIMSimilarity(patch_size=patch_size)
 
     def compute_ssim(self, reference_frame, current_frame):
         return ssim(reference_frame, current_frame)
@@ -26,9 +26,9 @@ class SimilarityMetrics:
     def compute_issm(self, reference_frame, current_frame):
         return self.issm_similarity.issm(reference_frame, current_frame)
 
-    def compute_csm(self, reference_frame, current_frame):
-        csm = self.copula_similarity.compute_local_similarity(reference_frame, current_frame)
-        return csm, np.mean(csm)
+    def compute_csim(self, reference_frame, current_frame):
+        csim = self.copula_similarity.compute_local_similarity(reference_frame, current_frame)
+        return csim, np.mean(csim)
 
 def update_progress_bar(total_frames, processed_frames, bar_length=50):
     percent_complete = (processed_frames / total_frames) * 100
@@ -64,18 +64,17 @@ def process_video(video_path, resolution_factor, output_video, ssim, fsim, issm,
     ssim_results = []
     fsim_results = []
     issm_results = []
-    csm_results = []
-    csm_maps = []  # To store CSM maps for each frame
+    csim_results = []
+    csim_maps = [] 
     frame_indices = []
 
     fig = plt.figure(figsize=(20, 12)) 
     
     gs = fig.add_gridspec(2, 3, height_ratios=[1, 1.5])  
 
-    # Axes for the first row
     video_ax = fig.add_subplot(gs[0, 0])
     diff_ax = fig.add_subplot(gs[0, 1])
-    csm_ax = fig.add_subplot(gs[0, 2])
+    csim_ax = fig.add_subplot(gs[0, 2])
     
     plot_ax = fig.add_subplot(gs[1, :])
     
@@ -83,23 +82,22 @@ def process_video(video_path, resolution_factor, output_video, ssim, fsim, issm,
     font_labels = 20  
     font_ticks = 18  
 
-    # Initialize the plots
     video_ax.set_title('(a)', fontsize=font_title)
     diff_ax.set_title('(b)', fontsize=font_title)
-    csm_ax.set_title('(c)', fontsize=font_title)
+    csim_ax.set_title('(c)', fontsize=font_title)
     plot_ax.set_title('(d)', fontsize=font_title)
     
     plot_ax.plot([], [], 'g-', label='SSIM')
     plot_ax.plot([], [], 'b-', label='FSIM')
     plot_ax.plot([], [], 'm-', label='ISSM')
-    plot_ax.plot([], [], 'r-', label='CSM')
+    plot_ax.plot([], [], 'r-', label='CSIM')
     plot_ax.set_xlim(0, 100)
     plot_ax.set_ylim(0, 1)
     plot_ax.set_xlabel('Frame Index', fontsize=font_labels)
     plot_ax.set_ylabel('Metric Value', fontsize=font_labels)
     plot_ax.legend(loc='lower left', fontsize=font_labels)
     
-    for ax in [video_ax, diff_ax, csm_ax, plot_ax]:
+    for ax in [video_ax, diff_ax, csim_ax, plot_ax]:
         ax.tick_params(axis='both', which='major', labelsize=font_ticks)
 
     writer = FFMpegWriter(fps=30, codec='libx264')
@@ -119,7 +117,7 @@ def process_video(video_path, resolution_factor, output_video, ssim, fsim, issm,
             ssim_value = metrics.compute_ssim(ref_rgb, current_rgb)
             fsim_value = metrics.compute_fsim(ref_rgb, current_rgb)
             issm_value = metrics.compute_issm(ref_rgb, current_rgb)
-            csm_map, csm_mean = metrics.compute_csm(ref_rgb, current_rgb)
+            csim_map, csim_mean = metrics.compute_csim(ref_rgb, current_rgb)
             diff_frame = cv2.absdiff(current_rgb, ref_rgb)
 
             frame_indices.append(frame_count)
@@ -129,8 +127,8 @@ def process_video(video_path, resolution_factor, output_video, ssim, fsim, issm,
                 fsim_results.append(fsim_value)
             if issm:
                 issm_results.append(issm_value)
-            csm_results.append(csm_mean)
-            csm_maps.append(csm_map)  # Save the CSM map for later use
+            csim_results.append(csim_mean)
+            csim_maps.append(csim_map) 
 
             video_ax.imshow(current_rgb)
             video_ax.axis('off')
@@ -139,9 +137,9 @@ def process_video(video_path, resolution_factor, output_video, ssim, fsim, issm,
             diff_ax.imshow(diff_rgb)
             diff_ax.axis('off')
 
-            csm_map_resized = cv2.resize(csm_map, (current_resized.shape[1], current_resized.shape[0]))  
-            csm_ax.imshow(csm_map_resized, cmap='hot', interpolation='nearest')
-            csm_ax.axis('off')
+            csim_map_resized = cv2.resize(csim_map, (current_resized.shape[1], current_resized.shape[0]))  
+            csim_ax.imshow(csim_map_resized, cmap='hot', interpolation='nearest')
+            csim_ax.axis('off')
 
             plot_ax.clear()
             if ssim:
@@ -150,7 +148,7 @@ def process_video(video_path, resolution_factor, output_video, ssim, fsim, issm,
                 plot_ax.plot(frame_indices, fsim_results, 'b-', label='FSIM')
             if issm:
                 plot_ax.plot(frame_indices, issm_results, 'm-', label='ISSM')
-            plot_ax.plot(frame_indices, csm_results, 'r-', label='CSM')
+            plot_ax.plot(frame_indices, csim_results, 'r-', label='CSIM')
             plot_ax.set_xlim(0, len(frame_indices))
             plot_ax.set_ylim(0, 1)
             plot_ax.set_xlabel('Frame Index', fontsize=font_labels)
@@ -180,8 +178,8 @@ def process_video(video_path, resolution_factor, output_video, ssim, fsim, issm,
         'ssim_results': ssim_results,
         'fsim_results': fsim_results,
         'issm_results': issm_results,
-        'csm_results': csm_results,
-        'csm_maps': csm_maps 
+        'csim_results': csim_results,
+        'csim_maps': csim_maps 
     }
 
     with open('similarity_metrics_data.pkl', 'wb') as f:
