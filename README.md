@@ -1,5 +1,5 @@
 # Copula-based Similarity Metric (CSIM)
-Official implementation of the paper: "FlightScope: A Deep Comprehensive Assessment of Aircraft Detection Algorithms in Satellite Imagery"
+Official implementation of the paper: "CSIM: A Copula-based similarity index sensitive to local changes for Image quality assessment"
 
 [![arXiv](https://img.shields.io/badge/arXiv-2404.02877-<COLOR>.svg)](https://arxiv.org/abs/2410.01411)
 
