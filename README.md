@@ -1,5 +1,7 @@
 # Copula-based Similarity Metric (CSIM)
-A novel locally sensitive image similarity metric based on Gaussian Copula.
+Official implementation of the paper: "FlightScope: A Deep Comprehensive Assessment of Aircraft Detection Algorithms in Satellite Imagery"
+
+[![arXiv](https://img.shields.io/badge/arXiv-2404.02877-<COLOR>.svg)](https://arxiv.org/abs/2410.01411)
 
 ## Summary
 
@@ -207,9 +209,19 @@ The example below shows a comparative study on an Andromeda Galaxy video with a 
 
 ![csim_vs_other_metrics_astronomy](images/andromeda_galaxy.gif)
 
+## Citation
+Please cite use if you use our method or implementation as following:
+```
+@misc{ghazouali2024csimcopulabasedsimilarityindex,
+      title={CSIM: A Copula-based similarity index sensitive to local changes for Image quality assessment}, 
+      author={Safouane El Ghazouali and Umberto Michelucci and Yassin El Hillali and Hichem Nouira},
+      year={2024},
+      eprint={2410.01411},
+      archivePrefix={arXiv},
+      primaryClass={eess.IV},
+      url={https://arxiv.org/abs/2410.01411}, 
+}
+```
 ## Licence
 
 This code is made available for research purposes only and is not licensed for commercial use.
-
-## Citation
-<!--Please cite use if you use our implementation as following:-->
